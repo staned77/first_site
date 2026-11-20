@@ -86,7 +86,7 @@ main {
 .page-title { padding: 40px 0 8px; }
 .page-title h1 { margin: 0 0 8px; font-size: 34px; }
 
-.lead { font-size: 18px; color: var(--muted); }
+.lead { font-size: 18px; font-weight: normal; color: var(--muted); }
 
 /* Главный экран */
 .hero {
@@ -127,14 +127,41 @@ main {
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 16px;
+  line-height: 1.65;
+  cursor: pointer;
+  /* Bootstrap тоже имеет класс .btn: управляем им через его переменные */
+  --bs-btn-border-width: 2px;
+  border: 2px solid var(--bs-btn-border-color, transparent);
 }
 
-.btn-main { background: var(--accent); color: #ffffff; }
+.btn-main {
+  background: var(--accent);
+  color: #ffffff;
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: var(--accent-dark);
+  --bs-btn-hover-border-color: var(--accent-dark);
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: var(--accent-dark);
+  --bs-btn-active-border-color: var(--accent-dark);
+}
 .btn-main:hover { background: var(--accent-dark); }
 
 .btn-ghost {
   border: 2px solid var(--accent);
   color: var(--accent);
+  --bs-btn-color: var(--accent);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-color: var(--accent-dark);
+  --bs-btn-hover-bg: #fde3d9;
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-active-color: var(--accent-dark);
+  --bs-btn-active-bg: #fde3d9;
+  --bs-btn-active-border-color: var(--accent);
 }
 .btn-ghost:hover { background: #fde3d9; }
 
@@ -152,7 +179,7 @@ main {
   padding: 20px;
 }
 
-.tile h3 { margin: 0 0 8px; }
+.tile h3 { margin: 0 0 8px; font-size: 1.17em; }
 .tile p { margin: 0; color: var(--muted); }
 
 .tile-num {
@@ -259,5 +286,97 @@ main {
 
   .hero-photo { width: 280px; height: 280px; }
 
-  .grid { grid-template-columns: repeat(3, 1fr); }
+  .grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 }
+/* ===== Добавлено для задания по JavaScript ===== */
+
+/* Bootstrap подключён раньше этого файла: возвращаем свои отступы и жирность */
+h1, h2, h3 { font-weight: bold; }
+p { margin: 1em 0; }
+
+/* Кнопка переключения темы в шапке */
+.theme-btn {
+  padding: 6px 14px;
+  background: transparent;
+  color: #d9cbb8;
+  border: 1px solid #5a493c;
+  border-radius: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+.theme-btn:hover { background: #43342a; }
+
+/* Карточки проектов, которые рисует script.js */
+.tile .tile-tech {
+  margin-top: 10px;
+  color: var(--accent);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+
+.tile-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+.tile-link:hover { text-decoration: underline; }
+
+/* Форма обратной связи */
+.contact-form { max-width: 640px; }
+
+.form-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.form-control {
+  background-color: var(--card);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.form-control:focus {
+  background-color: var(--card);
+  color: var(--text);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(228, 87, 46, 0.2);
+}
+
+#formMessage {
+  min-height: 1.65em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Модальное окно Bootstrap в цветах сайта */
+.modal-content {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.modal-header, .modal-footer { border-color: var(--line); }
+.modal-title { font-family: Arial, Helvetica, sans-serif; }
+
+/* Тёмная тема: меняем только переменные */
+body.dark-theme {
+  --bg: #1c1511;
+  --text: #f2e8da;
+  --muted: #b8a794;
+  --card: #2a2019;
+  --dark: #120d0a;
+  --line: #43342a;
+}
+
+body.dark-theme .label,
+body.dark-theme .tags li {
+  background: #4a2a1e;
+  color: #ffb199;
+}
+
+body.dark-theme .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
